@@ -36,23 +36,33 @@ function calculatePercentage ()
 	echo "Keys" ${!coins[@]}
 	echo "Percentage" ${coins[@]}
 }
-
+function Winning ()
+{
+	echo "Wining Combination Percentage"
+		for i in ${!coins[@]}
+		do
+			echo "$i ${coins[$i]}"
+		done | sort -k2 -rn | head -1
+}
 
 case $choice in
 	1)
 		noOfCoin=1
 		flipCoin $noOfFlips $noOfCoin
 		calculatePercentage
+		Winning
 		;;
    2)
 		noOfCoin=2
 		flipCoin $noOfFlips $noOfCoin
 		calculatePercentage
+		Winning
 		;;
 	3)
 		noOfCoin=3
 		flipCoin $noOfFlips $noOfCoin
 		calculatePercentage
+		Winning
 		;;
    *)
       echo "Invalid Choice"
