@@ -3,7 +3,7 @@ echo "WELCOME TO FLIP COIN SIMULATOR"
 
 declare -A coins
 read -p "How many times you want to flip the coin ? " noOfFlips
-read -p "Enter your choice 1:Singlet 2:Doublet " choice
+read -p "Enter your choice 1:Single Coin  2:Double Coin " choice
 function flipCoin ()
 {
 	for((i=1;i<=$1;i++))
@@ -31,7 +31,7 @@ function calculatePercentage ()
 {
 	for i in ${!coins[@]}
 	do
-		coin[$i]=`echo "scale=2;${coins[$i]}*100/$noOfFlips" | bc`
+		coins[$i]=`echo "scale=2;${coins[$i]}*100/$noOfFlips" | bc`
 	done
 	echo "Keys" ${!coins[@]}
 	echo "Percentage" ${coins[@]}
@@ -39,18 +39,18 @@ function calculatePercentage ()
 
 
 case $choice in
-   1)
-      noOfCoin=1
+	1)
+		noOfCoin=1
 		flipCoin $noOfFlips $noOfCoin
 		calculatePercentage
-      ;;
-   2)
-      noOfCoin=2
+		;;
+	2)
+		noOfCoin=2
 		flipCoin $noOfFlips $noOfCoin
 		calculatePercentage
-      ;;
-   *)
-      echo "Invalid Choice"
-      ;;
+		;;
+	*)
+		echo "Invalid Choice"
+		;;
 esac
 
