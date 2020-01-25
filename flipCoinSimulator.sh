@@ -52,7 +52,7 @@ case $choice in
 		calculatePercentage
 		Winning
 		;;
-   2)
+	2)
 		noOfCoin=2
 		flipCoin $noOfFlips $noOfCoin
 		calculatePercentage
@@ -64,8 +64,8 @@ case $choice in
 		calculatePercentage
 		Winning
 		;;
-   *)
-      echo "Invalid Choice"
-      ;;
+	*)
+		echo "Invalid Choice"
+		;;
 esac
 
