@@ -39,16 +39,16 @@ function calculatePercentage ()
 
 
 case $choice in
-   1)
-      noOfCoin=1
+	1)
+		noOfCoin=1
 		flipCoin $noOfFlips $noOfCoin
 		calculatePercentage
-      ;;
+		;;
    2)
-      noOfCoin=2
+		noOfCoin=2
 		flipCoin $noOfFlips $noOfCoin
 		calculatePercentage
-      ;;
+		;;
 	3)
 		noOfCoin=3
 		flipCoin $noOfFlips $noOfCoin
