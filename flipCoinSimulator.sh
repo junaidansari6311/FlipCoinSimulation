@@ -2,26 +2,55 @@
 echo "WELCOME TO FLIP COIN SIMULATOR"
 
 declare -A coins
-#variables
-headscount=0
-tailscount=0
-read -p "How many times you want to flip the coin " times
-function Singlet () 
+read -p "How many times you want to flip the coin ? " noOfFlips
+read -p "Enter your choice 1:Singlet 2:Doublet " choice
+function flipCoin ()
 {
-	for((i=1;i<=$times;i++))
+	for((i=1;i<=$1;i++))
 	do
-		if [ $((RANDOM%2)) -eq 1 ]
-		then
-			coins[H]=$((++headscount))
-		else
-			coins[T]=$((++tailscount))
-		fi
+		side=""
+		for((j=1;j<=$2;j++))
+		do
+			if [ $((RANDOM%2)) -eq 1 ]
+			then
+				side+=H
+			else
+				side+=T
+			fi
+		done
+		countUpdate $side
 	done
-	echo "Keys  " ${!coins[@]}
-	echo "Count " ${coins[@]}
-	echo "Percentage of Heads headsPercentage=`echo "scale=2;${coins[H]}*100/$times" | bc`%"
-	echo "Percentage of Tails tailsPercentage=`echo "scale=2;${coins[T]}*100/$times" | bc`%"
-
 }
-Singlet
+
+function countUpdate ()
+{
+	coins[$1]=$((${coins[$1]}+1))
+}
+
+function calculatePercentage ()
+{
+	for i in ${!coins[@]}
+	do
+		coin[$i]=`echo "scale=2;${coins[$i]}*100/$noOfFlips" | bc`
+	done
+	echo "Keys" ${!coins[@]}
+	echo "Percentage" ${coins[@]}
+}
+
+
+case $choice in
+   1)
+      noOfCoin=1
+		flipCoin $noOfFlips $noOfCoin
+		calculatePercentage
+      ;;
+   2)
+      noOfCoin=2
+		flipCoin $noOfFlips $noOfCoin
+		calculatePercentage
+      ;;
+   *)
+      echo "Invalid Choice"
+      ;;
+esac
 
